@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://652vkknks7jc"]
+[gd_scene load_steps=5 format=3 uid="uid://652vkknks7jc"]
 
 [ext_resource type="PackedScene" uid="uid://cacpd8qvulvcp" path="res://player.tscn" id="1_unoke"]
+[ext_resource type="Texture2D" uid="uid://c844yfbd26ea8" path="res://sprites/bug.png" id="2_rklp3"]
+[ext_resource type="Script" path="res://enemy.gd" id="3_7uqqe"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d0y8p"]
 
 [node name="root" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_unoke")]
+
+[node name="Sprite2D2" parent="player" index="2"]
+position = Vector2(229, -2)
 
 [node name="bullet_spawn_point" parent="player" index="3"]
 position = Vector2(0, -60)
@@ -16,5 +21,11 @@ position = Vector2(518, 523)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_d0y8p")
+
+[node name="enemy" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(327, 141)
+texture = ExtResource("2_rklp3")
+script = ExtResource("3_7uqqe")
+player = NodePath("../player")
 
 [editable path="player"]
