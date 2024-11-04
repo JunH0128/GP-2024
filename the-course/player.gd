@@ -1,30 +1,21 @@
 extends CharacterBody2D
 
-@export var bullet_scene:PackedScene
-@export var bullet_spawn_point:Node2D
+signal rocket_shot(rocket_scene, location)
 
-const SPEED = 500.0
-const JUMP_VELOCITY = -400.0
+@export var speed = 300
 
-const TURN_RATE = 180
+@onready var muzzle = $Muzzle
 
-func _physics_process(delta: float) -> void:
-	
-	var r = Input.get_axis("turn_left", "turn_right")
-	print(r)
+var rocket_scene =preload("res://Rocket.tscn")
 
-	var rot = deg_to_rad(r * TURN_RATE * delta)
-	rotate(rot)
-	
-	var f = Input.get_axis("move_backwards", "move_forwards")
+func _process(delta):
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
-	var vel = transform.y * f * SPEED
-	print(transform.y)
-	velocity = vel
-	
-	if Input.is_action_pressed("fire"):
-		var b = bullet_scene.instantiate()
-		b.global_position = bullet_spawn_point.global_position
-		get_parent().add_child(b)
-	
+func _physics_process(delta):
+	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	velocity = direction * speed
 	move_and_slide()
+	
+func shoot():
+	rocket_shot.emit(rocket_scene, muzzle.global_position)
