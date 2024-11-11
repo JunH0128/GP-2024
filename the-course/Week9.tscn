@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://byh4k5m6olodl"]
+
+[ext_resource type="Texture2D" uid="uid://1iu1vgsv62lo" path="res://assets/PNG/Sprites/Astronauts/spaceAstronauts_004.png" id="1_5e5xt"]
+[ext_resource type="Script" path="res://sprite2d.gd" id="1_5j7n3"]
+[ext_resource type="Script" path="res://Node2d.gd" id="1_11kut"]
+[ext_resource type="Texture2D" uid="uid://dfqem0ebv08jw" path="res://assets/PNG/Sprites/Astronauts/spaceAstronauts_001.png" id="2_4op46"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ro6k"]
+size = Vector2(33, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq3k6"]
+size = Vector2(1.78186, 2.0038)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_11kut")
+
+[node name="wall" type="Area2D" parent="."]
+position = Vector2(281, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall"]
+position = Vector2(458, 81)
+texture = ExtResource("1_5e5xt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(457.5, 79.5)
+shape = SubResource("RectangleShape2D_7ro6k")
+
+[node name="wall2" type="Area2D" parent="wall"]
+position = Vector2(281, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall/wall2"]
+position = Vector2(458, 81)
+texture = ExtResource("1_5e5xt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall/wall2"]
+position = Vector2(457.5, 79.5)
+shape = SubResource("RectangleShape2D_7ro6k")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(245, 103)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(134, 87)
+texture = ExtResource("2_4op46")
+script = ExtResource("1_5j7n3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(133, 88.5)
+scale = Vector2(24.6933, 29.4441)
+shape = SubResource("RectangleShape2D_nq3k6")
+
+[connection signal="area_entered" from="Area2D" to="Area2D/Sprite2D2" method="_on_area_2d_area_entered"]
