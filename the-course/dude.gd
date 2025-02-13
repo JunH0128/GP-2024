@@ -120,7 +120,7 @@ func _physics_process(delta: float) -> void:
 			# respawn the player
 			respawn()
 		else:
-			velocity = velocity * 0.99
+			velocity = velocity * 0.96
 		
 	
 func _ready() -> void:

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://48jqpr0y7aot"]
+
+[ext_resource type="Script" uid="uid://721b21qx8t6x" path="res://health.gd" id="1_bydfv"]
+[ext_resource type="Texture2D" uid="uid://ckmaspa7xadub" path="res://assets/PNG/Sprites/Missiles/spaceMissiles_001.png" id="2_7e838"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5lkp"]
+size = Vector2(35, 37)
+
+[node name="Health" type="CharacterBody2D"]
+script = ExtResource("1_bydfv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, -0.5)
+shape = SubResource("RectangleShape2D_m5lkp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.5, 0)
+scale = Vector2(1.75, 1)
+texture = ExtResource("2_7e838")
